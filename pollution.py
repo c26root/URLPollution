@@ -72,7 +72,7 @@ class Pollution:
         if not isinstance(qs, dict):
             return False
 
-        ret = []
+        ret = list()
         for i in qs.keys():
             temp = qs.copy()
             if append:

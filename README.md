@@ -9,9 +9,9 @@
 
 ```
 payloads = ['phpinfo();', 'echo 1;']
-qs = 'http://baidu.com/?a=1&b=2'
+url = 'http://baidu.com/?a=1&b=2'
 p = Pollution(payloads)
-print p.payload_generator(qs)
+print p.payload_generator(url)
 
 ['http://baidu.com/?a=1phpinfo%28%29%3B&b=2', 'http://baidu.com/?a=1&b=2phpinfo%28%29%3B', 'http://baidu.com/?a=1echo+1%3B&b=2', 'http://baidu.com/?a=1&b=2echo+1%3B']
 ```

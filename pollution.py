@@ -24,7 +24,7 @@ class Pollution:
             # 一次污染所有qs
             if all_qs:
                 for payload in self.payloads:
-                    qs = self._pollution_all(query, payload)
+                    qs = self._pollution_all(query, payload, append=append)
                     url = self._url_unparse(qs)
                     ret.append(url)
             else:
@@ -38,7 +38,7 @@ class Pollution:
 
             if all_qs:
                 for payload in self.payloads:
-                    ret.append(self._pollution_all(query, payload))
+                    ret.append(self._pollution_all(query, payload, append=append))
             else:
                 for payload in self.payloads:
                     for qs in self._pollution(query, payload, append=append):
@@ -103,5 +103,5 @@ if __name__ == '__main__':
     payloads = ['phpinfo();', 'echo 1;']
     qs = 'a=1&b=2'
     p = Pollution(payloads)
-    print p.payload_generator(qs)
+    print p.payload_generator(qs, all_qs=True, append=False)
 

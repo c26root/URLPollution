@@ -7,17 +7,25 @@
 * 模板注入
 
 ```
+payload_generator(self, query, all_qs=False, append=True)
+
 all_qs=True 一次污染所有url
 append=True 追加payload
-```
 
-```
+
 payloads = ['phpinfo();', 'echo 1;']
 qs = 'a=1&b=2'
 p = Pollution(payloads)
-print p.payload_generator(qs)
-```
+print p.payload_generator(qs, all_qs=True)
 
-```
-['a=1phpinfo%28%29%3B&b=2', 'a=1&b=2phpinfo%28%29%3B', 'a=1echo+1%3B&b=2', 'a=1&b=2echo+1%3B']
+['a=1phpinfo%28%29%3B&b=2phpinfo%28%29%3B', 'a=1echo+1%3B&b=2echo+1%3B']
+
+
+payloads = ['phpinfo();', 'echo 1;']
+qs = 'a=1&b=2'
+p = Pollution(payloads)
+print p.payload_generator(qs, all_qs=True, append=False)
+
+['a=phpinfo%28%29%3B&b=phpinfo%28%29%3B', 'a=echo+1%3B&b=echo+1%3B']
+
 ```

@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 
-from utils import Url
 import random
+from utils import Url
 
 
 class Pollution:

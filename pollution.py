@@ -100,4 +100,8 @@ class Pollution:
 
 
 if __name__ == '__main__':
-    pass
+    payloads = ['phpinfo();', 'echo 1;']
+    qs = 'a=1&b=2'
+    p = Pollution(payloads)
+    print p.payload_generator(qs)
+

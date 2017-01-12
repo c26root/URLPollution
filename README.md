@@ -1,11 +1,21 @@
 # UrlPollution
 
->对URL进行Payload污染
+>对URL进行Payload污染 然后发送请求进行FUZZ测试 通过 dnslog ceye.io 等DNS请求记录平台辅助测试
 
 * 命令执行
 * 命令注入
+* 模板注入
+
 ```
-python pollution.py
+all_qs=True 一次污染所有url
+append=True 追加payload
+```
+
+```
+payloads = ['phpinfo();', 'echo 1;']
+qs = 'a=1&b=2'
+p = Pollution(payloads)
+print p.payload_generator(qs)
 ```
 
 ```

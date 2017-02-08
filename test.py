@@ -34,7 +34,7 @@ def in_pool(item):
             return True
 
 def url_filter():
-    with open('urls.txt') as fi, open('wanmei.txt', 'w') as fo:
+    with open('urls.txt') as fi, open('output.txt', 'w') as fo:
         
         for line in fi:
             url = line.strip()
@@ -61,12 +61,12 @@ def url_filter():
                 item = {'host': host, 'path': path[1:].split('/')[:-1], 'query': [i for i in qs.keys()]}
 
                 if in_pool(item):
-                    continueqs = Url.urldecode(Url.build_qs(qs))
+                    continue
 
                 # add url pool
                 pool.append(item)
                 buf.append(line)
-
+                
                 # print item
                 print url
         fo.writelines(buf)

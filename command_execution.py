@@ -28,8 +28,7 @@ class CommandExecution:
     # 日志记录配置
     def _loggingConfig(self):
         logging.basicConfig(level=logging.DEBUG,
-                            format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
-                            datefmt='%m-%d %H:%M',
+                            format='%(asctime)s %(levelname)-8s %(message)s',
                             filename=command_execute_log)
 
         logging.getLogger("requests").setLevel(logging.WARNING)

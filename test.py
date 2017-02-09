@@ -66,7 +66,6 @@ def url_filter():
                 # add url pool
                 pool.append(item)
                 buf.append(line)
-                
                 # print item
                 print url
         fo.writelines(buf)
@@ -79,7 +78,7 @@ p = urlpollution.Pollution(payloads)
 for i in p.payload_generator(qs, all_qs=False):
     print Url.urldecode(i)
 
-print 
+
 for i in p.payload_generator(qs, all_qs=True):
     print Url.urldecode(i)
 

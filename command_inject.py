@@ -46,7 +46,7 @@ class CommandInject:
 
     def run(self):
 
-        dnslog_host = 'e2f54f3a.dnslog.link'
+        DNSLOG_HOST = 'e2f54f3a.dnslog.link'
 
         # run
         for url in self.target_urls:
@@ -55,7 +55,7 @@ class CommandInject:
             sign = Random.id_generator(size=10)
 
             # DNSLOG 地址
-            dnslog_host = '{}.{}'.format(sign, dnslog_host)
+            dnslog_host = '{}.{}'.format(sign, DNSLOG_HOST)
 
             # 生成payload
             payloads = [payload.format(dnslog_host)

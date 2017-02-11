@@ -57,7 +57,7 @@ def url_filter():
 
             # verify static resource
             if scheme == 'http' and query and not query.endswith('=') and not is_static_file(o):
-                path = int_regex.sub('', path)
+                path = int_regex.sub('<int>', path)
                 item = {'host': host, 'path': path[1:].split('/')[:-1], 'query': [i for i in qs.keys()]}
 
                 if in_pool(item):
@@ -67,19 +67,9 @@ def url_filter():
                 pool.append(item)
                 buf.append(line)
                 # print item
-                print url
+                print url, item
         fo.writelines(buf)
 
-# url_filter()        
-
-payloads = ['phpinfo();', 'echo 1;']
-qs = '?a=1s&b=2'
-p = urlpollution.Pollution(payloads)
-for i in p.payload_generator(qs, all_qs=False):
-    print Url.urldecode(i)
-
-
-for i in p.payload_generator(qs, all_qs=True):
-    print Url.urldecode(i)
+url_filter()        
 
 

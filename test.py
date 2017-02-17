@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 
+import os
 import re
 import time
 import urlparse
 import requests
 import urlpollution
-from config import command_inject_log
 from utils import Url
 from pymongo import MongoClient
 import tldextract
@@ -22,20 +22,19 @@ buf = []
 pool = []
 
 int_regex = re.compile(r'(\d+)')
+hash_regex = re.compile(r'(\w){32}')
+
 def is_static_file(p):
-    if p and p.path:
-        for i in static_ext:
-            if p.path.endswith(i):
-                return True
+    extenstion = os.path.splitext(p.path)[1]
+    return extenstion in static_ext
 
 def in_pool(item):
-    for i in pool:
-        if i == item:
-            return True
+    return item in pool
+
 
 def url_filter():
     with open('urls.txt') as fi, open('output.txt', 'w') as fo:
-        
+
         for line in fi:
             url = line.strip()
 
@@ -52,13 +51,27 @@ def url_filter():
                 'path': path,
                 'query': query
             }
-            # qs = dict(urlparse.parse_qsl(query, keep_blank_values=True)
-            qs = dict(urlparse.parse_qsl(query))
+            # query = int_regex.sub('<int>', query)
 
             # verify static resource
-            if scheme == 'http' and query and not query.endswith('=') and not is_static_file(o):
+            if scheme == 'http' and query and not is_static_file(o):
+                # 匹配path中的整型
+                print '[test]', path,
+                path = hash_regex.sub('<hash>', path)
                 path = int_regex.sub('<int>', path)
-                item = {'host': host, 'path': path[1:].split('/')[:-1], 'query': [i for i in qs.keys()]}
+
+                qs = dict(urlparse.parse_qsl(query, keep_blank_values=True))
+
+                # 匹配querystring中的整型
+                for k, v in qs.iteritems():
+                    # 如果值为空 补充为<int>
+                    if v == '':
+                        v = '1'
+                    _k = hash_regex.sub('<hash>', v)
+                    qs[k] = int_regex.sub('<int>', _k)
+                    
+                item = {
+                    'host': host, 'path': path[1:].split('/'), 'query': qs}
 
                 if in_pool(item):
                     continue
@@ -66,10 +79,13 @@ def url_filter():
                 # add url pool
                 pool.append(item)
                 buf.append(line)
+
                 # print item
-                print url, item
+                # print url, item
+
+        print '-' * 50
+        for i in buf:
+            print i.strip()
         fo.writelines(buf)
 
-url_filter()        
-
-
+url_filter()

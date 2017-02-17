@@ -15,7 +15,7 @@ class CommandInject:
 
     def __init__(self, filename):
         self.filename = filename
-        # 加载url列表
+        # 加载url列
         self.target_urls = self._load_file(self.filename)
         # 初始化日志
         self._loggingConfig()
@@ -46,7 +46,7 @@ class CommandInject:
 
     def run(self):
 
-        DNSLOG_HOST = 'e2f54f3a.dnslog.link'
+        DNSLOG_HOST = 'dseje4.ceye.io'
 
         # run
         for url in self.target_urls:

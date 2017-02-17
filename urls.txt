@@ -1,10 +1,1 @@
-http://www.software.fudan.edu.cn/people/peopledetail.shtml?letter=a&people.id=57&peaaaopleTypeId=3
-http://www.software.fudan.edu.cn/people/peopledetail.shtml?letter=a&people.id=57&peaaaopleTypeId=3
-http://www.software.fudan.edu.cn/people/peopledetail.shtml?letter=a&people.id=57&peaaaopleTypeId=3
-http://www.software.fudan.edu.cn/people/admin/peopledetail.shtml?a=2
-http://www.software.fudan.edu.cn/people/123/peopledetail.shtml?a=2
-http://www.software.fudan.edu.cn/people/b/peopledetail.shtml?as=2
-http://www.software.fudan.edu.cn/people/a/peopledetail.shtml?b=2
-http://www.software.fudan.edu.cn/people/123.shtml
-http://www.software.fudan.edu.cn/people/445.shtml
-http://daza.im:81/vul_eval.php?s=12312312
+

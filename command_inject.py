@@ -6,7 +6,7 @@ import logging
 import grequests
 from urlpollution import Pollution
 from utils import Random, File, Url
-from config import dnslog_host, bilid_request_timeout, headers, command_inject_log
+from config import DNSLOG_HOST, BILID_REQUEST_TIMEOUT, COMMAND_INJECT_LOG
 from command_injection_payloads import payloads as payloads_tpl
 from command_injection_payloads import headers as headers_tpl
 
@@ -29,7 +29,7 @@ class CommandInject:
     def _loggingConfig(self):
         logging.basicConfig(level=logging.DEBUG,
                             format='%(asctime)s %(levelname)s %(message)s',
-                            filename=command_inject_log)
+                            filename=COMMAND_INJECT_LOG)
 
         logging.getLogger("requests").setLevel(logging.WARNING)
 
@@ -55,10 +55,10 @@ class CommandInject:
             sign = Random.id_generator(size=10)
 
             # DNSLOG 地址
-            dnslog_host = '{}.{}'.format(sign, DNSLOG_HOST)
+            DNSLOG_HOST = '{}.{}'.format(sign, DNSLOG_HOST)
 
             # 生成payload
-            payloads = [payload.format(dnslog_host)
+            payloads = [payload.format(DNSLOG_HOST)
                         for payload in payloads_tpl]
 
             # Double Quotes
@@ -68,11 +68,12 @@ class CommandInject:
             payloads.extend(d_quotes)
 
             # 生成头部payload
+            headers = {}
             for k, v in headers_tpl.iteritems():
                 if k == 'Referer':
-                    headers[k] = v.format(url, dnslog_host)
+                    headers[k] = v.format(url, DNSLOG_HOST)
                     continue
-                headers[k] = v.format(dnslog_host)
+                headers[k] = v.format(DNSLOG_HOST)
             
             p = Pollution(payloads)
 
@@ -90,7 +91,7 @@ class CommandInject:
             rs = (grequests.get(u, headers=headers, allow_redirects=False)
                   for u in urls)
 
-            grequests.map(rs, gtimeout=bilid_request_timeout)
+            grequests.map(rs, gtimeout=BILID_REQUEST_TIMEOUT)
             # # Load DNSLog Result
             # logs = self._load_log()
 

@@ -7,7 +7,7 @@ import requests
 import grequests
 from urlpollution import Pollution
 from utils import File, Hash, Url
-from config import request_timeout, headers, command_execute_log
+from config import REQUEST_TIMEOUT, HEADERS, COMMAND_EXECUTE_LOG
 from command_execution_payloads import payloads
 
 
@@ -29,7 +29,7 @@ class CommandExecution:
     def _loggingConfig(self):
         logging.basicConfig(level=logging.DEBUG,
                             format='%(asctime)s %(levelname)s %(message)s',
-                            filename=command_execute_log)
+                            filename=COMMAND_EXECUTE_LOG)
 
         logging.getLogger("requests").setLevel(logging.WARNING)
 
@@ -58,9 +58,9 @@ class CommandExecution:
 
             # Start
             print 'Payload Number:', len(urls)
-            rs = (grequests.get(u, headers=headers, allow_redirects=False)
+            rs = (grequests.get(u, headers=HEADERS, allow_redirects=False)
                   for u in urls)
-            response = grequests.map(rs, gtimeout=request_timeout)
+            response = grequests.map(rs, gtimeout=REQUEST_TIMEOUT)
             for i in response:
                 if i is not None:
                     for payload in payloads:

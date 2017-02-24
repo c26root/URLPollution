@@ -1,20 +1,20 @@
 # Command Inject Timeout
-bilid_request_timeout = 5
+BILID_REQUEST_TIMEOUT = 5
 
 # Regular Timeout
-request_timeout = 5
+REQUEST_TIMEOUT = 8
 
 
 # DNSLOG domain
-dnslog_host = 'e2f54f3a.dnslog.link'
+DNSLOG_HOST = 'e2f54f3a.dnslog.link'
 
 # Command Inject Log Filename
-command_inject_log = 'command_inject.log'
+COMMAND_INJECT_LOG = 'command_inject.log'
 
 # Command Execute Log Filename
-command_execute_log = 'command_execution.log'
+COMMAND_EXECUTE_LOG = 'command_execution.log'
 
 # Default headers
-headers = {
+HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36'
 }

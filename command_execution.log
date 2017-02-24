@@ -1,0 +1,2 @@
+2017-02-24 18:57:37,391 INFO http://daza.im:81/vul_eval.php?a=2ssss&s=phpinfo();&b=2 => PHP Code eval
+2017-02-24 18:57:37,391 INFO http://daza.im:81/vul_eval.php?a=2ssss&s=${print_r(md5(11123))};&b=2 => PHP Code eval

@@ -3,7 +3,7 @@
 
 import re
 import requests
-from config import command_inject_log
+from config import COMMAND_INJECT_LOG
 
 
 def load_log():

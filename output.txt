@@ -1,1 +1,2 @@
-
+http://daza.im:81/vul_shell_exec.php?a=2&s=sssss&b=2
+http://daza.im:81/vul_eval.php?a=2ssss&s=ssss&b=2

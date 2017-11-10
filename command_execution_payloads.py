@@ -39,7 +39,7 @@ payloads = [
         'payload': xss_payload,
         'sign': xss_sign
     }, {
-        'name': 'Flask STI',
+        'name': 'Jinja2 STI',
         'payload': '{{ 111121 + 2229223 }}',
         'sign': '2340344'
     }

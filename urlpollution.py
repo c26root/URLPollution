@@ -5,7 +5,7 @@ import random
 from utils import Url
 
 
-class Pollution:
+class URLPollution:
 
     def __init__(self, payloads):
         self.payloads = payloads
@@ -13,38 +13,32 @@ class Pollution:
     def payload_generator(self, query, all_qs=False, append=True):
 
         ret = list()
+        ret2 = list()
 
-        # 如果是url 进行分解
-        if self._is_url(query):
+        self.parse = Url.url_parse(query)
+        self.query = self.parse.query
 
-            url = query
-            self.parse = Url.url_parse(url)
-            query = self.parse.query
+        # a=1&b=2
+        if not self.parse.scheme or not self.parse.netloc:
+            self.query = query
 
-            # 一次污染所有qs
-            if all_qs:
-                for payload in self.payloads:
-                    qs = self._pollution_all(query, payload, append=append)
-                    url = self._url_unparse(qs)
-                    ret.append(url)
-            else:
-                for payload in self.payloads:
-                    for qs in self._pollution(query, payload, append=append):
-                        url = self._url_unparse(qs)
-                        ret.append(url)
-
+        if all_qs:
+            for payload in self.payloads:
+                ret.append(self._pollution_all(
+                    self.query, payload, append=append))
         else:
-            # 参数处理
+            for payload in self.payloads:
+                for qs in self._pollution(self.query, payload, append=append):
+                    ret.append(qs)
 
-            if all_qs:
-                for payload in self.payloads:
-                    ret.append(self._pollution_all(query, payload, append=append))
+        # 遍历组合url
+        for i in ret:
+            if self.parse.netloc:
+                ret2.append(self._url_unparse(i))
             else:
-                for payload in self.payloads:
-                    for qs in self._pollution(query, payload, append=append):
-                        ret.append(qs)
+                ret2.append(i)
 
-        return ret
+        return ret2
 
     # 合并url
     def _url_unparse(self, qs):
@@ -100,8 +94,18 @@ class Pollution:
 
 
 if __name__ == '__main__':
+    # Configuration Payload
     payloads = ['phpinfo();', 'echo 1;']
-    qs = 'http://baidu.com/?a=1&b=2'
-    p = Pollution(payloads)
-    print p.payload_generator(qs)
 
+    # Configuration URL or QueryString
+    url = 'a=1&b=2'
+
+    p = URLPollution(payloads)
+    print p.payload_generator(url, append=True)
+    print p.payload_generator(url, append=False)
+
+    url = 'http://baidu.com/?x=1&y=2'
+
+    p = URLPollution(payloads)
+    print p.payload_generator(url, append=True)
+    print p.payload_generator(url, append=False)

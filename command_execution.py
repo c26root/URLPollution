@@ -5,7 +5,7 @@ import json
 import logging
 import requests
 import grequests
-from urlpollution import Pollution
+from urlpollution import URLPollution
 from utils import File, Hash, Url
 from config import REQUEST_TIMEOUT, HEADERS, COMMAND_EXECUTE_LOG
 from command_execution_payloads import payloads
@@ -45,7 +45,7 @@ class CommandExecution:
 
             signs = [i.get('sign') for i in payloads]
 
-            p = Pollution([payload.get('payload') for payload in payloads])
+            p = URLPollution([payload.get('payload') for payload in payloads])
 
             # 分解url
             parse = Url.url_parse(url)

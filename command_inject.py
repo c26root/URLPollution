@@ -4,7 +4,7 @@
 import json
 import logging
 import grequests
-from urlpollution import Pollution
+from urlpollution import URLPollution
 from utils import Random, File, Url
 from config import DNSLOG_HOST, BILID_REQUEST_TIMEOUT, COMMAND_INJECT_LOG
 from command_injection_payloads import payloads as payloads_tpl
@@ -75,7 +75,7 @@ class CommandInject:
                     continue
                 headers[k] = v.format(DNSLOG_HOST)
             
-            p = Pollution(payloads)
+            p = URLPollution(payloads)
 
             urls = []
 

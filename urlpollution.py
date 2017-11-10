@@ -104,7 +104,7 @@ if __name__ == '__main__':
     print p.payload_generator(url, append=False)
     print p.payload_generator(url, all_qs=True, append=False)
 
-    print '-' * 120
+    print 
 
     url = 'http://127.0.0.1/?a=1&b=2'
     print p.payload_generator(url, append=False)

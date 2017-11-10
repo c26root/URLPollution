@@ -15,14 +15,16 @@
 payloads = ['phpinfo();', 'echo 1;']
 
 # Configuration URL or QueryString
-url = 'http://baidu.com/?a=1&b=2'
+url = 'http://127.0.0.1/?a=1&b=2'
 
 p = URLPollution(payloads)
-print p.payload_generator(url)
+print p.payload_generator(url, append=False)
+print p.payload_generator(url, all_qs=True, append=False)
 ```
 
 ```
-['http://baidu.com/?a=1phpinfo%28%29%3B&b=2', 'http://baidu.com/?a=1&b=2phpinfo%28%29%3B', 'http://baidu.com/?a=1echo+1%3B&b=2', 'http://baidu.com/?a=1&b=2echo+1%3B']
+['http://127.0.0.1/?a=phpinfo%28%29%3B&b=2', 'http://127.0.0.1/?a=1&b=phpinfo%28%29%3B', 'http://127.0.0.1/?a=echo+1%3B&b=2', 'http://127.0.0.1/?a=1&b=echo+1%3B']
+['http://127.0.0.1/?a=phpinfo%28%29%3B&b=phpinfo%28%29%3B', 'http://127.0.0.1/?a=echo+1%3B&b=echo+1%3B']
 ```
 
 

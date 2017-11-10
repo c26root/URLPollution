@@ -101,6 +101,13 @@ if __name__ == '__main__':
     url = 'a=1&b=2'
 
     p = URLPollution(payloads)
-    print p.payload_generator(url, append=True)
+    print p.payload_generator(url, append=False)
     print p.payload_generator(url, all_qs=True, append=False)
+
+    print '-' * 120
+
+    url = 'http://127.0.0.1/?a=1&b=2'
+    print p.payload_generator(url, append=False)
+    print p.payload_generator(url, all_qs=True, append=False)
+
 

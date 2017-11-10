@@ -17,7 +17,7 @@ class URLPollution:
 
         self.parse = Url.url_parse(query)
         self.query = self.parse.query
-
+        self.append = append
         # a=1&b=2
         if not self.parse.scheme or not self.parse.netloc:
             self.query = query
@@ -25,10 +25,10 @@ class URLPollution:
         if all_qs:
             for payload in self.payloads:
                 ret.append(self._pollution_all(
-                    self.query, payload, append=append))
+                    self.query, payload))
         else:
             for payload in self.payloads:
-                for qs in self._pollution(self.query, payload, append=append):
+                for qs in self._pollution(self.query, payload):
                     ret.append(qs)
 
         # 遍历组合url
@@ -61,7 +61,7 @@ class URLPollution:
         return Url.qs_parse(query)
 
     # 逐个参数污染
-    def _pollution(self, query, payload, append=True):
+    def _pollution(self, query, payload):
         qs = self._qs2dict(query)
         if not isinstance(qs, dict):
             return False
@@ -69,7 +69,7 @@ class URLPollution:
         ret = list()
         for i in qs.keys():
             temp = qs.copy()
-            if append:
+            if self.append:
                 temp[i] += payload
             else:
                 temp[i] = payload
@@ -78,14 +78,14 @@ class URLPollution:
         return ret
 
     # 一次污染全部参数
-    def _pollution_all(self, query, payload, append=True):
+    def _pollution_all(self, query, payload):
 
         qs = self._qs2dict(query)
         if not isinstance(qs, dict):
             return False
 
         for i in qs:
-            if append:
+            if self.append:
                 qs[i] += payload
             else:
                 qs[i] = payload
@@ -102,10 +102,5 @@ if __name__ == '__main__':
 
     p = URLPollution(payloads)
     print p.payload_generator(url, append=True)
-    print p.payload_generator(url, append=False)
+    print p.payload_generator(url, all_qs=True, append=False)
 
-    url = 'http://baidu.com/?x=1&y=2'
-
-    p = URLPollution(payloads)
-    print p.payload_generator(url, append=True)
-    print p.payload_generator(url, append=False)

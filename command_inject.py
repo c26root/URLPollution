@@ -45,7 +45,8 @@ class CommandInject:
             return list()
 
     def run(self):
-
+        
+        # DNSLOG 地址
         DNSLOG_HOST = 'dseje4.ceye.io'
 
         # run
@@ -54,11 +55,8 @@ class CommandInject:
             # 随机标记
             sign = Random.id_generator(size=10)
 
-            # DNSLOG 地址
-            DNSLOG_HOST = '{}.{}'.format(sign, DNSLOG_HOST)
-
             # 生成payload
-            payloads = [payload.format(DNSLOG_HOST)
+            payloads = [payload.format( '{}.{}'.format(sign, DNSLOG_HOST))
                         for payload in payloads_tpl]
 
             # Double Quotes
